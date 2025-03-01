@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Bookshelf App</title>
+
+      <!-- MY FAVICON -->
+       <link rel="shortcut icon" href="./assets/icons/book-open.svg" type="image/x-icon">
+
+      <!-- MY OWN STYLES -->
+      <link rel="stylesheet" href="./style.css" />
+
+      <!-- GOOGLE FONTS (HOST GROTESK) -->
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet" />
+
+      <!-- Impor script kamu di sini -->
+      <!-- Lampirkan `defer` jika pemanggilan dilakukan dalam <head> -->
+      <script defer src="./main.js"></script>
+   </head>
+   <body>
+      <header>
+         <div class="logo">
+            <!-- BOOK ICON -->
+            <svg
+               xmlns="http://www.w3.org/2000/svg"
+               width="24"
+               height="24"
+               viewBox="0 0 24 24"
+               fill="none"
+               stroke="currentColor"
+               stroke-width="2"
+               stroke-linecap="round"
+               stroke-linejoin="round"
+               class="feather feather-book-open"
+            >
+               <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+               <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+            </svg>
+
+            <h1>Bookshelf.app</h1>
+         </div>
+      </header>
+
+      <main>
+         <div class="content-container">
+            <section id="newBook">
+               <div class="new-book-container">
+                  <div class="add-new-book-button">
+                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
+                        <path
+                           d="M440-440v120q0 17 11.5 28.5T480-280q17 0 28.5-11.5T520-320v-120h120q17 0 28.5-11.5T680-480q0-17-11.5-28.5T640-520H520v-120q0-17-11.5-28.5T480-680q-17 0-28.5 11.5T440-640v120H320q-17 0-28.5 11.5T280-480q0 17 11.5 28.5T320-440h120Zm40 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"
+                        />
+                     </svg>
+                     <h2>Tambah Buku Baru</h2>
+                  </div>
+
+                  <div class="new-book-form">
+                     <form id="bookForm" data-testid="bookForm">
+                        <div>
+                           <label for="bookFormTitle">Judul</label>
+                           <input class="book-form" id="bookFormTitle" type="text" required data-testid="bookFormTitleInput" />
+                        </div>
+                        <div>
+                           <label for="bookFormAuthor">Penulis</label>
+                           <input class="book-form" id="bookFormAuthor" type="text" required data-testid="bookFormAuthorInput" />
+                        </div>
+                        <div>
+                           <label for="bookFormYear">Tahun</label>
+                           <input class="book-form" id="bookFormYear" type="number" required data-testid="bookFormYearInput" />
+                        </div>
+                        <div class="checkbox">
+                           <input id="bookFormIsComplete" type="checkbox" data-testid="bookFormIsCompleteCheckbox" />
+                           <label for="bookFormIsComplete">Selesai dibaca</label>
+                        </div>
+                        <button id="bookFormSubmit" type="submit" data-testid="bookFormSubmitButton">Masukkan Buku ke rak <span>Belum selesai dibaca</span></button>
+                     </form>
+                  </div>
+               </div>
+            </section>
+
+            <section id="searchBook">
+               <div class="search-book-content-container">
+                  <h2>Cari Buku</h2>
+                  <div class="search-book-container">
+                     <form id="searchBook" data-testid="searchBookForm">
+                        <!-- <label for="searchBookTitle">Judul</label> -->
+                        <button id="searchSubmit" type="submit" data-testid="searchBookFormSubmitButton">
+                           <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="18"
+                              height="18"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              class="feather feather-search"
+                           >
+                              <circle cx="11" cy="11" r="8"></circle>
+                              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                           </svg>
+                        </button>
+                        <input id="searchBookTitle" type="text" data-testid="searchBookFormTitleInput" />
+                     </form>
+                  </div>
+               </div>
+            </section>
+
+            <section id="incompleteBook">
+               <h2>Belum selesai dibaca</h2>
+
+               <div id="incompleteBookList" data-testid="incompleteBookList">
+                  <!-- 
+            Ini adalah struktur HTML untuk masing-masing buku.
+            Pastikan susunan elemen beserta atribut data-testid menyesuaikan seperti contoh ini.
+          -->
+                  <div data-bookid="123123123" data-testid="bookItem">
+                     <h3 data-testid="bookItemTitle" class="judul-buku">Harry Potter</h3>
+                     <p data-testid="bookItemAuthor" class="penulis">Penulis: Penulis Buku 1</p>
+                     <p data-testid="bookItemYear" class="tahun">Tahun: 2030</p>
+                     <div class="button-set-container">
+                        <button data-testid="bookItemIsCompleteButton" class="mark-completed">Selesai dibaca</button>
+                        <button data-testid="bookItemDeleteButton" class="delete-book-list">
+                           <svg xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 -960 960 960" width="18" fill="#ffffff">
+                              <path
+                                 d="M280-120q-33 0-56.5-23.5T200-200v-520q-17 0-28.5-11.5T160-760q0-17 11.5-28.5T200-800h160q0-17 11.5-28.5T400-840h160q17 0 28.5 11.5T600-800h160q17 0 28.5 11.5T800-760q0 17-11.5 28.5T760-720v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM400-280q17 0 28.5-11.5T440-320v-280q0-17-11.5-28.5T400-640q-17 0-28.5 11.5T360-600v280q0 17 11.5 28.5T400-280Zm160 0q17 0 28.5-11.5T600-320v-280q0-17-11.5-28.5T560-640q-17 0-28.5 11.5T520-600v280q0 17 11.5 28.5T560-280ZM280-720v520-520Z"
+                              />
+                           </svg>
+                           Hapus Buku
+                        </button>
+                        <button data-testid="bookItemEditButton" class="edit-book">
+                           <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="18"
+                              height="18"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              class="feather feather-edit"
+                           >
+                              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                           </svg>
+
+                           Edit Buku
+                        </button>
+                     </div>
+                  </div>
+               </div>
+            </section>
+
+            <section id="completedBook">
+               <h2>Selesai dibaca</h2>
+
+               <div id="completeBookList" data-testid="completeBookList">
+                  <!-- 
+            Ini adalah struktur HTML untuk masing-masing buku.
+            Pastikan susunan elemen beserta atribut data-testid menyesuaikan seperti contoh ini.
+          -->
+                  <div data-bookid="456456456" data-testid="bookItem">
+                     <h3 data-testid="bookItemTitle" class="judul-buku">Judul Buku 2</h3>
+                     <p data-testid="bookItemAuthor" class="penulis">Penulis: Penulis Buku 2</p>
+                     <p data-testid="bookItemYear" class="tahun">Tahun: 2030</p>
+                     <div class="button-set-container">
+                        <button data-testid="bookItemIsCompleteButton" class="mark-completed">Selesai dibaca</button>
+                        <button data-testid="bookItemDeleteButton" class="delete-book-list">Hapus Buku</button>
+                        <button data-testid="bookItemEditButton" class="edit-book">
+                           <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="18"
+                              height="18"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              class="feather feather-edit"
+                           >
+                              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                           </svg>
+                           Edit Buku
+                        </button>
+                     </div>
+                  </div>
+               </div>
+            </section>
+         </div>
+      </main>
+   </body>
+</html>
