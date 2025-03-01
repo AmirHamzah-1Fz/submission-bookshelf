@@ -93,8 +93,26 @@ main {
 
 @media not all and (min-width: 620px) {
     .content-container {
-        min-width: 340px !important;
+        min-width: 420px !important;
+        padding-inline: 1rem !important;
     }
+
+    #incompleteBook button {
+      gap: 2px !important;
+    }
+
+    #completedBook button {
+      gap: 2px !important;
+    }
+
+    .button-set-container {
+      flex-direction: column !important;
+      gap: 2px !important;
+   }
+
+   .button-set-container button {
+      width: 100% !important;
+   }
 }
 
 #newBook {
@@ -277,7 +295,6 @@ main {
         border-radius: 12px;
         margin-top: 1rem;
         cursor: pointer;
-
     }
 }
 
@@ -285,7 +302,7 @@ main {
     display: flex;
     justify-content: start;
     align-items: center;
-    gap: 6px;
+    gap: 4px;
 }
 
 #incompleteBookList {
@@ -368,4 +385,14 @@ main {
     padding-block: 1rem;
     border-radius: 10px;
     margin-top: 1rem;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 2rem;
+  color: #00000060;
+  background-color: white;
+  border-radius: 8px;
+  margin: 1rem;
+  font-size: 1rem;
 }
